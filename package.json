@@ -15,7 +15,8 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.0.tar.gz",
     "react-native-element": "^1.2.1",
     "react-native-elements": "1.2.0",
-    "react-native-web": "~0.11.7"
+    "react-native-web": "~0.11.7",
+    "react-navigation": "2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
