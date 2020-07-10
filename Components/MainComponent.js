@@ -1,29 +1,30 @@
 import React, { Component } from 'react';
+import Home from './HomeComponent';
 import Directory from './DirectoryComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
-import { View, Platform  } from "react-native";
-import { createStackNavigation, createDrawerNavigator } from 'react-navigation';
+import { View, Platform } from 'react-native';
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 
-const DirectoryNavigation = createStackNavigation(
+const DirectoryNavigator = createStackNavigator(
     {
-        Directory: {screen: Directory},
-        CampsiteInfo:{screen: CampsiteInfo}
-    },
+        Directory: { screen: Directory },
+        CampsiteInfo: { screen: CampsiteInfo }
+    }, 
     {
-        initialRouteNam: 'Directory',
+        initialRouteName: 'Directory',
         navigationOptions: {
-            headerStyle:{
+            headerStyle: {
                 backgroundColor: '#5637DD'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
-                color:'#fff'
+                color: '#fff'
             }
         }
     }
 );
-onst HomeNavigator = createStackNavigator(
+const HomeNavigator = createStackNavigator(
     {
         Home: { screen: Home }
     },
@@ -39,7 +40,6 @@ onst HomeNavigator = createStackNavigator(
         }
     }
 );
-
 const MainNavigator = createDrawerNavigator(
     {
         Home: { screen: HomeNavigator },
@@ -49,28 +49,17 @@ const MainNavigator = createDrawerNavigator(
         drawerBackgroundColor: '#CEC8FF'
     }
 );
-
-
-
 class Main extends Component {
-    =
 
 
     render() {
         return (
-            <View style ={{flex: 1,
-                            paddingTop: Platform.OS === 'ios'?0 : Expo.Constants.statusBarHeight
-                            }}>
-               <MainNavigator />
-
-
-            </View>
-
-            
-            
-            
-        );
-        
+            <View style={{
+                flex: 1,
+                 paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight 
+                 }}>
+                <MainNavigator />
+            </View>)
     }
 }
 
