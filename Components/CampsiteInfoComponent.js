@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import { Text, View, ScrollView, FlatList } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
-import { COMMENTS } from '../shared/comments';
-import { CAMPSITES } from '../shared/campsites';
+import { connect } from "react-redux";
+import { baseUrl } from "../shared/baseUrl";
 
+const mapStateToProps = (state) => {
+  return {
+    campsites: state.campsites,
+    comments: state.comments
+  };
+};
 
 function RenderComment ({comments}){
     const renderCommentItem = ({item}) =>{
@@ -34,7 +40,7 @@ function RenderCampsite({campsite}) {
         return (
             <Card
                 featuredTitle={campsite.name}
-                image={require('./images/react-lake.jpg')}>
+                image={{uri: baseUrl + campsite.image}}
                 <Text style={{margin: 10}}>
                     {campsite.description}
                 </Text>
@@ -59,8 +65,6 @@ class  CampsiteInfo extends Component {
     constructor(){
         super(props);
         this.state={
-            campsite:CAMPSITES,
-            comments:COMMENTS,
             favourite: false
         }
     }
@@ -77,8 +81,8 @@ class  CampsiteInfo extends Component {
     {
         
        const campsiteId = this.props.Navigation.getParam('campsiteId');
-       const  campsite = this.state.campsite.filter(campsite =>campsiteId === campsite.id )[0];
-       const comment = this.state.comments.filter(comment =>comment.campsiteId === comment.id )[0];
+       const campsite = this.props.campsites.campsites.filter((campsite) => campsite.id === campsiteId)[0];
+       const comments = this.props.comments.comments.filter((comment) => comment.campsiteId === campsiteId);
        return(
            <ScrollView>
                <RenderCampsite campsite={campsite}
@@ -95,4 +99,4 @@ class  CampsiteInfo extends Component {
     } 
 }
 
-export default CampsiteInfo;
+export default  connect(mapStateToProps)(CampsiteInfo);
