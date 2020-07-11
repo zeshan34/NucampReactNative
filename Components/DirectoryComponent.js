@@ -12,8 +12,8 @@ const mapStateToProps = (state) => {
   };
   
 
-class  Directory extend Component {
-    lass Directory extends Component {
+class  Directory extends Component {
+  
         static navigationOptions = {
           title: "Directory",
         };
@@ -56,4 +56,3 @@ class  Directory extend Component {
       
 
       export default connect(mapStateToProps)(Directory);
-    

@@ -45,7 +45,7 @@ function RenderCampsite({campsite}) {
         return (
             <Card
                 featuredTitle={campsite.name}
-                image={{uri: baseUrl + campsite.image}}
+                image={{uri: baseUrl + campsite.image}}>
                 <Text style={{margin: 10}}>
                     {campsite.description}
                 </Text>
@@ -75,7 +75,7 @@ class  CampsiteInfo extends Component {
     }
     markFavorite(campsiteId) {
         this.props.postFavorite(campsiteId);
-        );
+        
     }
 
         static NavigationOptions ={

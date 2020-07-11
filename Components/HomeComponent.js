@@ -46,7 +46,8 @@ const mapStateToProps = (state) => {
 class Home extends Component {
 
     constructor(props) {
-        
+        super(props);
+    }
 
     static navigationOptions = {
         title: 'Home'
