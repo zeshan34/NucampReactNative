@@ -17,4 +17,6 @@ export const ConfigureStore = () => {
             favorites
         }),
         applyMiddleware(thunk, logger)
-    )``}
+    );
+    return store;
+}
