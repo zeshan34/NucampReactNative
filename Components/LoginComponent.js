@@ -21,11 +21,10 @@ class Login extends Component {
             SecureStore.setItemAsync('userinfo',JSON.stringify({
                 username:this.state.username,password:this.state.password
                })).catch(error => console.log('could not save user info',error));
-            })
+            }
             
-        }else{
-            SecureStore.deleteItemAsync('userinfo').catch(error => console.log('could not delete the 
-            user info',error));
+        else{
+            SecureStore.deleteItemAsync('userinfo').catch(error => console.log('could not delete the user info', error));
         }
          
         
