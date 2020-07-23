@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, ScrollView, StyleSheet,
     Picker, Switch, Button, Modal } from 'react-native';
 import DatePicker from 'react-native-datepicker';
+import * as Animatable from 'react-native-animatable';
 
 class Reservation extends Component {
 
@@ -40,7 +41,7 @@ class Reservation extends Component {
 
     render() {
         return (
-            <ScrollView>
+            <Animatible.View Animation='zoomin' duration={2000} delay={1000}>
                 <View style={styles.formRow}>
                     <Text style={styles.formLabel}>Number of Campers</Text>
                     <Picker
@@ -103,21 +104,35 @@ class Reservation extends Component {
                     visible={this.state.showModal}
                     onRequestClose={() => this.toggleModal()}>
                     <View style={styles.modal}>
-                        <Text style={styles.modalTitle}>Search Campsite Reservations</Text>
-                        <Text style={styles.modalText}>Number of Campers: {this.state.campers}</Text>
-                        <Text style={styles.modalText}>Hike-In?: {this.state.hikeIn ? 'Yes' : 'No'}</Text>
-                        <Text style={styles.modalText}>Date: {this.state.date}</Text>
-                        <Button
-                            onPress={() => {
-                                this.toggleModal();
-                                this.resetForm();
-                            }}
-                            color='#5637DD'
-                            title='Close'
-                        />
+                    
+            onPress={() => {
+                Alert.alert(
+                  "Begin Search?",
+                  "Number of Campers: " + this.state.campers
+                   + "\n\n"
+                   + "Hike-In? " + this.state.hikeIn
+                   + "\n\n"
+                   + "Date: " + this.state.date,
+                  [
+                    {
+                      text: "Cancel",
+                      onPress: () => this.resetForm(),
+                      style: "cancel",
+                    },
+                    {
+                      text: "OK",
+                      onPress: () => {this.resetForm();
+                      }
+                    },
+                  ],
+                  { cancelable: false }
+                );
+              }}
+                        
                     </View>
                 </Modal>
-            </ScrollView>
+            </Animatible.View>
+                
         );
     }
 }

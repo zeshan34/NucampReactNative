@@ -8,6 +8,7 @@ import { deleteFavorite } from '../redux/ActionCreators';
 import Swipeout from "react-native-swipeout"; 
 import * as Animatable from 'react-native-animatable';
 
+
 const mapStateToProps = state => {
     return {
         campsites: state.campsites,
@@ -43,9 +44,9 @@ class Favorites extends Component {
                                     text:'Cancel',
                                     onPress: () => console.log(item.name +"Not Deleted"),
                                     style:'cancel'
-                                }
+                                },
                                 {
-                                    text:'ok',
+                                    text:'OK',
                                     onPress: () =>this.props.deleteFavorite(item.id) 
                                 }
                             ],

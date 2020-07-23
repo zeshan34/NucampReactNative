@@ -12,7 +12,7 @@ import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view'; 
 import { connect } from 'react-redux';
 import { fetchCampsites, fetchComments, fetchPromotions, fetchPartners } from '../redux/ActionCreators';
-
+import Login from './LoginComponent';
 
 const mapDispatchToProps = {
     fetchCampsites,
@@ -171,6 +171,30 @@ const FavoritesNavigator = createStackNavigator(
     }
 );
 
+const LoginNavigator = createStackNavigator(
+   { 
+       Login:  { screen :Login}
+    },  
+    {
+        navigationOption: ({navigation}) => ({
+            headerStyle:{
+                backgroundColor:'#5637DD'
+            },
+            headerTintColor:'#fff',
+            headerTitleStyle:{
+                color:'#fff'
+            },
+            headerLeft: <Icon
+                name='sign-in'
+                type='font-awesome'
+                icon-style={styles.stackIcon}
+                onPress={() => navigation.toggleDrawer()}
+                />
+
+        }) 
+    } 
+);
+
 //Drawer Content
 const CustomDrawerContentComponent = props => (
     <ScrollView>
@@ -278,12 +302,28 @@ const MainNavigator = createDrawerNavigator(
                     />
                 )
             }
-        }
+        },
+        Login: {
+            screen:LoginNavigator,
+            navigationOptions:{
+                drawerIcon:({tintColor}) =>(
+                    <Icon
+                        name='sign-in'
+                        type="font-awesome"
+                        size={24}
+                        color={tintColor}
+                    />
+
+                )
+            }
+        },
     },
     {
+        initialRouteName:'Home',
         drawerBackgroundColor: '#CEC8FF',
         contentComponent: CustomDrawerContentComponent
     }
+
 );
 
 
